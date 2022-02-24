@@ -10,11 +10,11 @@ def html():
 def meteo():
     nRandom = random.randint(0,8)
     if nRandom <= 2:
-        immagine = "/static/images/Pioggia.png"
+        immagine = "/static/images/pioggia.png"
     elif nRandom <= 5:
-        immagine = "/static/images/Nuvole.png"
+        immagine = "/static/images/nuvole.png"
     else:
-        immagine = "static/images/sole.jpg"
+        immagine = "/static/images/sole.jpg"
     return render_template("meteo.html", meteo=immagine)
 
 
