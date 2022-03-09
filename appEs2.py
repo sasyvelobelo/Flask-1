@@ -8,13 +8,15 @@
 
 from flask import Flask,render_template, request
 app = Flask(__name__)
+lst= []
+ 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET'])       #home page
 def es():
-    return render_template('es2.html')
+    return render_template('es2.html') # mi viene restituito "es2.html"
 
 
-@app.route('/dates', methods=['GET'])
+@app.route('/dates', methods=['GET'])  
 def dates():
     Name = request.args['Name']
     Pass = request.args['Pass']
@@ -22,10 +24,12 @@ def dates():
     Confirm = request.args['Conf']
     Sex = request.args['Sex']
 
-    lst= []
+    
 
     if Pass==Confirm:
-       lst.append({Username:Pass})
+       lst.append({'name':Name,'username':Username,'password':Pass,'sex':Sex})
+       print(lst)
+       return render_template('login.html')
        if Sex=='M':
            return render_template('welcome.html', nome=Name)
        else:
@@ -37,7 +41,16 @@ def dates():
 
 @app.route('/login', methods=['GET'])
 def login():
-     return render_template('login.html')
+    username_log = request.args['User']
+    password_log = request.args['Pass']
+    for utente in lst:
+        if utente['username'] == username_log and utente['password'] == password_log:
+            if utente['sex'] == 'M':
+                return render_template('welcome.html', nome=utente['name'])
+            else:
+                return render_template('welcomeW.html', nome=utente['name'])
+
+    return render_template('error.html')
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
