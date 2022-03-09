@@ -25,7 +25,6 @@ def dates():
     Sex = request.args['Sex']
 
     
-
     if Pass==Confirm:
        lst.append({'name':Name,'username':Username,'password':Pass,'sex':Sex})
        print(lst)
