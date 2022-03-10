@@ -17,19 +17,28 @@ def home():
     
 @app.route('/home', methods=['GET'])
 def es():
-    capoluogo = request.args['Cap']
-    regione = request.args['Reg']
-    opzione = request.args['CR']
+    input = request.args['input']
+    radioButton = request.args['CR']
 
+    lst.append({'input':input, 'radioButton': radioButton})
 
+    for elemento in lst:
 
+    if input == capoluoghiRegione.keys() and radioButton == 'C':
+           return capoluoghiRegione.values()
+    else:
+           return render_template('errorRes3.html')
 
-
+    if input == capoluoghiRegione.values() and radioButton == 'R':
+           return capoluoghiRegione.keys()
+    else:
+           return render_template('errorCes3.html')
+    
 
 
 
 capoluoghiRegione = {'Abruzzo': 'LAquila', 'Basilicata': 'Potenza', 'Calabria': 'Catanzaro', 'Campania': 'Napoli', 'Emilia-Romagna': 'Bologna', 'Friuli-Venezia Giulia': 'Trieste', 'Lazio': 'Roma', 'Liguria': 'Genova',
-                     'Lombardia': 'Milano', 'Marche': 'Ancona', 'Molise': 'Campobasso', 'Piemonte': '	Torino', 'Puglia': 'Bari', 'Sardegna': 'Cagliari', 'Sicilia': 'Palermo', 'Toscana': 'Firenze', 'Trentino-Alto Adige': 'Trento',
+                     'Lombardia': 'Milano', 'Marche': 'Ancona', 'Molise': 'Campobasso', 'Piemonte': 'Torino', 'Puglia': 'Bari', 'Sardegna': 'Cagliari', 'Sicilia': 'Palermo', 'Toscana': 'Firenze', 'Trentino-Alto Adige': 'Trento',
                      'Umbria': 'Perugia', 'Valle d Aosta': 'Aosta', 'Veneto': 'Venezia'}
 
 
