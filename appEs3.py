@@ -7,7 +7,12 @@
 
 from flask import Flask,render_template, request
 app = Flask(__name__)
-lst= []
+
+
+capoluoghiRegione = {'Abruzzo': 'LAquila', 'Basilicata': 'Potenza', 'Calabria': 'Catanzaro', 'Campania': 'Napoli', 'Emilia-Romagna': 'Bologna', 'Friuli-Venezia Giulia': 'Trieste', 'Lazio': 'Roma', 'Liguria': 'Genova',
+                     'Lombardia': 'Milano', 'Marche': 'Ancona', 'Molise': 'Campobasso', 'Piemonte': 'Torino', 'Puglia': 'Bari', 'Sardegna': 'Cagliari', 'Sicilia': 'Palermo', 'Toscana': 'Firenze', 'Trentino-Alto Adige': 'Trento',
+                     'Umbria': 'Perugia', 'Valle d Aosta': 'Aosta', 'Veneto': 'Venezia'}
+
 
 @app.route('/', methods=['GET'])       #home page
 def home():
@@ -20,30 +25,24 @@ def es():
     input = request.args['input']
     radioButton = request.args['CR']
 
-    lst.append({'input':input, 'radioButton': radioButton})
-
-    for elemento in lst:
-
-    if input == capoluoghiRegione.keys() and radioButton == 'C':
-           return capoluoghiRegione.values()
-    else:
-           return render_template('errorRes3.html')
-
-    if input == capoluoghiRegione.values() and radioButton == 'R':
-           return capoluoghiRegione.keys()
-    else:
-           return render_template('errorCes3.html')
     
+    
+    if radioButton == "REG":
+       input
+       for key, value in capoluoghiRegione.items():
+            if input == key:
+                capoluogo = value
+                return render_template(capoluogo)
+        return render_template("errorRes3.html")      
 
-
-
-capoluoghiRegione = {'Abruzzo': 'LAquila', 'Basilicata': 'Potenza', 'Calabria': 'Catanzaro', 'Campania': 'Napoli', 'Emilia-Romagna': 'Bologna', 'Friuli-Venezia Giulia': 'Trieste', 'Lazio': 'Roma', 'Liguria': 'Genova',
-                     'Lombardia': 'Milano', 'Marche': 'Ancona', 'Molise': 'Campobasso', 'Piemonte': 'Torino', 'Puglia': 'Bari', 'Sardegna': 'Cagliari', 'Sicilia': 'Palermo', 'Toscana': 'Firenze', 'Trentino-Alto Adige': 'Trento',
-                     'Umbria': 'Perugia', 'Valle d Aosta': 'Aosta', 'Veneto': 'Venezia'}
-
-
-
-
+    else:
+        capoluogo = input
+        for key, value in capoluoghiRegione.items():
+            if capoluogo == value:
+                input = key
+                return input 
+        return render_template("errorCes3.html")   
+    
 
 
 
