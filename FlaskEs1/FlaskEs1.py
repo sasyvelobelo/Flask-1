@@ -13,10 +13,10 @@ def meteo():
     nRandom = random.randint(0,8)
     if nRandom <= 2:
         meteo = "PIOGGIA"
-        immagine = "/static/images/pioggia.jpg"
+        immagine = "/static/images/Pioggia.png"
     elif nRandom <= 5:
         meteo = "NUVOLOSO"
-        immagine = "/static/images/nuvoloso.jpg"
+        immagine = "/static/images/Nuvole.jpg"
     else:
         meteo = "SOLEGGIATO"
         immagine = "static/images/sole.jpg"

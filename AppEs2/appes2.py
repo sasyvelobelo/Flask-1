@@ -12,8 +12,8 @@ lst= []
  
 
 @app.route('/', methods=['GET'])       #home page
-def es():
-    return render_template('es2.html') # mi viene restituito "es2.html"
+def home():
+    return render_template('registrazione.html') # mi viene restituito "registrazione.html"
 
 
 @app.route('/dates', methods=['GET'])  
@@ -34,7 +34,7 @@ def dates():
        else:
            return render_template('welcomeW.html', nome=Name)
     else:
-        return render_template('error.html')
+        return render_template('ConfPass.html')
 
 
 
