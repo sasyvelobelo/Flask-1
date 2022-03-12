@@ -9,7 +9,7 @@ from flask import Flask,render_template, request
 app = Flask(__name__)
 
 
-capoluoghiRegione = {'Abruzzo': 'LAquila', 'Basilicata': 'Potenza', 'Calabria': 'Catanzaro', 'Campania': 'Napoli', 'Emilia-Romagna': 'Bologna', 'Friuli-Venezia Giulia': 'Trieste', 'Lazio': 'Roma', 'Liguria': 'Genova',
+dizionario = {'Abruzzo': 'LAquila', 'Basilicata': 'Potenza', 'Calabria': 'Catanzaro', 'Campania': 'Napoli', 'Emilia-Romagna': 'Bologna', 'Friuli-Venezia Giulia': 'Trieste', 'Lazio': 'Roma', 'Liguria': 'Genova',
                      'Lombardia': 'Milano', 'Marche': 'Ancona', 'Molise': 'Campobasso', 'Piemonte': 'Torino', 'Puglia': 'Bari', 'Sardegna': 'Cagliari', 'Sicilia': 'Palermo', 'Toscana': 'Firenze', 'Trentino-Alto Adige': 'Trento',
                      'Umbria': 'Perugia', 'Valle d Aosta': 'Aosta', 'Veneto': 'Venezia'}
 
@@ -22,35 +22,25 @@ def home():
     
 @app.route('/home', methods=['GET'])
 def es():
-    input = request.args['input']
-    radioButton = request.args['CR']
-
-    
-    
-    if radioButton == "REG":
-       input
-       for key, value in capoluoghiRegione.items():
-            if input == key:
+    scelta = request.args["Scelta"]
+    if scelta == "R":
+        regione = request.args["RegCap"]
+        for key, value in dizionario.items():
+            if regione == key:
                 capoluogo = value
-                return render_template(capoluogo)
-        return render_template("errorRes3.html")      
-
+                return render_template("risultatoes3.html", risposta = capoluogo)
+        return "<h1>Errore</h1>"              
     else:
-        capoluogo = input
-        for key, value in capoluoghiRegione.items():
+        capoluogo = request.args["RegCap"]
+        for key, value in dizionario.items():
             if capoluogo == value:
-                input = key
-                return input 
-        return render_template("errorCes3.html")   
+                regione = key
+                return render_template("risultatoes3.html", risposta = regione)
+        return "<h1>Errore</h1>"
+
     
-
-
-
-
-
-
-
-
+    
+      
 
 
 
