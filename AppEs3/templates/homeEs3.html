@@ -1,11 +1,6 @@
-<form action="/home" method = "GET"
->   <p>Inserisci Capoluogo/Regione <input type = "text" name = "RegCap" required/></p>     
-    
-
-
-    <p><input type = "radio" name = "Scelta" value="CAP" required/>C <input type = "radio" name = "Scelta" value="REG" required/>R </p>
-
-      
+<h1>Fai la tua scelta:</h1>
+<form action="/data" method = "GET">
+    <p>Scegli: <input type = "radio" name = "Scelta" value="R" required/>Regione <input type = "radio" name = "Scelta" value="C" required />Capoluogo</p>
+    <p>Scrivi: <input type = "text" name = "RegCap" required /></p>
     <p><input type = "submit" value = "Submit" /></p>
-    
 </form>

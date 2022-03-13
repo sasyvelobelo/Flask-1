@@ -9,19 +9,32 @@ from flask import Flask,render_template, request
 app = Flask(__name__)
 
 
-dizionario = {'Abruzzo': 'LAquila', 'Basilicata': 'Potenza', 'Calabria': 'Catanzaro', 'Campania': 'Napoli', 'Emilia-Romagna': 'Bologna', 'Friuli-Venezia Giulia': 'Trieste', 'Lazio': 'Roma', 'Liguria': 'Genova',
-                     'Lombardia': 'Milano', 'Marche': 'Ancona', 'Molise': 'Campobasso', 'Piemonte': 'Torino', 'Puglia': 'Bari', 'Sardegna': 'Cagliari', 'Sicilia': 'Palermo', 'Toscana': 'Firenze', 'Trentino-Alto Adige': 'Trento',
-                     'Umbria': 'Perugia', 'Valle d Aosta': 'Aosta', 'Veneto': 'Venezia'}
+dizionario = {"Abruzzo" :"L\'Aquila",
+        "Basilicata"	:"Potenza",
+        "Campania"	:"Napoli","Calabria":	"Catanzaro",
+        "Emilia-Romagna":"Bologna",
+        "Friuli-Venezia Giulia"	:"Trieste",
+        "Lazio"	:"Roma",
+        "Liguria":	"Genova",
+        "Lombardia":"Milano",
+        "Marche":"Ancona",
+        "Molise":"Campobasso",
+        "Piemonte":"Torino",
+        "Puglia":"Bari",
+        "Sardegna":"Cagliari",
+        "Sicilia":"Palermo",
+        "Toscana":"Firenze",
+        "Trentino-Alto Adige":"Trento",
+        "Umbria":"Perugia",
+        "Valle d Aosta":"Aosta",
+        "Veneto":"Venezia"}
 
-
-@app.route('/', methods=['GET'])       #home page
+@app.route("/", methods=["GET"])
 def home():
-    return render_template('homeEs3.html')
+    return render_template("homeEs3.html")
 
-
-    
-@app.route('/home', methods=['GET'])
-def es():
+@app.route("/data", methods=["GET"])
+def data():
     scelta = request.args["Scelta"]
     if scelta == "R":
         regione = request.args["RegCap"]
