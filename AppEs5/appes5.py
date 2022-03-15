@@ -23,9 +23,9 @@ def es():
     Citta = request.args['Citta']
 
     lst.append({'Nome':Nome,'Anno':Anno,'Citta':Citta})
-    print(lst)
     
-    return print(lst)
+    
+    return 
 
 
 
