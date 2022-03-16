@@ -43,39 +43,40 @@ def ricerca():
 @app.route('/ric', methods=['GET'])
 def ric():
 
-df2 = pd.read_csv('/workspace/Flask/AppEs5/dati.csv')
-gia_inseriti = {'squadra':squadra,'anno':anno,'citta':citta}
 
     squadra = request.args['Squadra']
     anno = request.args['Anno']
     citta = request.args['Citta']
 
-    for elemento in nuovi_dati:
-        if elemento['squadra'] == squadra:
-            if utente['sex'] == 'M':
-                return render_template('welcome.html', nome=utente['name'])
-            else:
-                return render_template('welcomeW.html', nome=utente['name'])
+    df2 = pd.read_csv('/workspace/Flask/AppEs5/dati.csv')
 
-    return render_template('error.html')
+
+    dfSquadra = df2[df2['squadra']==squadra]
+    dfAnno = df2[df2['anno']==anno]
+    dfcitta = df2[df2['citta']==citta]
 
     
-
-
-    # inserimento dei dati nel file csv
-    # lettura dei dati dal form html 
-    #squadra = request.args['Squadra']
-    #anno = request.args['Anno']
-    #citta = request.args['Citta']
-    # lettura dei dati daal file nel dataframe
-    #df1 = pd.read_csv('/workspace/Flask/AppEs5/dati.csv')
-    # aggiungiamo i nuovi dati nel dataframe 
-    #nuovi_dati = {'squadra':squadra,'anno':anno,'citta':citta}
+    if dfSquadra ==  df2[df2['squadra']==squadra:
+        return render_template('risultato.html', tables=[dfSquadra.to_html()], titles=[''])
+    else:
+        return render_template('errore.html') 
     
-    #df1 = df1.append(nuovi_dati,ignore_index=True)
-    # salviamo il dataframe sul file dati.csv
-    #df1.to_csv('/workspace/Flask/AppEs5/dati.csv', index=False)
-    #return df1.to_html()   #lo converte in codice html
+    if dfAnno ==  df2[df2['anno']==anno:
+        return render_template('risultato.html', tables=[dfAnno.to_html()], titles=[''])
+    else:
+        return render_template('errore.html') 
+
+    
+    if dfcitta ==  df2[df2['citta']==citta:
+        return render_template('risultato.html', tables=[dfcitta.to_html()], titles=[''])
+    else:
+        return render_template('errore.html') 
+
+
+
+        
+        
+
 
 
 
