@@ -26,7 +26,14 @@ def home():
 @app.route('/trova', methods=['GET'])
 def trova():
     return render_template('search.html')
-    
+
+@app.route('/visualizza', methods=['GET'])
+def visualizza():
+    return render_template('simple.html')
+
+@app.route('/scelta', methods=['GET'])
+def scelta():
+    return render_template('scelta.html')
 
 @app.route('/plot.png', methods=['GET'])
 def plot_png():
@@ -68,6 +75,25 @@ def ricerca():
         FigureCanvas(fig).print_png(output)
         return Response(output.getvalue(), mimetype='image/png')
 
+
+@app.route('/plot2.png', methods=['GET'])
+def plot2_png():
+
+    fig, ax = plt.subplots(figsize = (12,8))
+
+    imgutente.to_crs(epsg=3857).plot(ax=ax, alpha=0.5)
+    contextily.add_basemap(ax=ax)
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
+
+@app.route('/tendina', methods=("POST", "GET"))
+def tendina():   
+    
+    global imgutente
+    quart_scelto = request.args['quartendina']
+    imgutente = milano[milano['NIL'] == quart_scelto]
+    return render_template('plot2.html', PageTitle = "Matplotlib")
 
         
     

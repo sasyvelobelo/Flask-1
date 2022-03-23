@@ -1,0 +1,12 @@
+<h1>Scegli il quartiere:</h1>
+<form action="/tendina" method = "GET">
+
+    
+        <select name="quartendina" id="quartendina" method="GET">
+            {% for i in milano%}
+            <option value="{{i}}" SELECTED>{{i}}</option>
+            {%endfor%}
+          </select>
+        <p><input type = "submit" value = "Submit" /></p>
+      
+</form>
