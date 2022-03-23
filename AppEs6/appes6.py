@@ -31,8 +31,8 @@ def trova():
 def visualizza():
     return render_template('simple.html')
 
-@app.route('/scelta', methods=['GET'])
-def scelta():
+@app.route('/scelta1', methods=['GET'])
+def scelta1():
     return render_template('scelta.html')
 
 @app.route('/plot.png', methods=['GET'])
@@ -81,19 +81,17 @@ def plot2_png():
 
     fig, ax = plt.subplots(figsize = (12,8))
 
-    imgutente.to_crs(epsg=3857).plot(ax=ax, alpha=0.5)
+    risultato.to_crs(epsg=3857).plot(ax=ax, alpha=0.5)
     contextily.add_basemap(ax=ax)
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')
 
-@app.route('/tendina', methods=("POST", "GET"))
-def tendina():   
-    
-    global imgutente
-    quart_scelto = request.args['quartendina']
-    imgutente = milano[milano['NIL'] == quart_scelto]
-    return render_template('plot2.html', PageTitle = "Matplotlib")
+@app.route('/scelta', methods=("POST", "GET"))
+def plot35():   
+    qrt = milano.NIL.to_list()
+    qrt.sort()
+    return render_template('menu.html', qrt=qrt)
 
         
     
