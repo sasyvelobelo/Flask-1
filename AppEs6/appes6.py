@@ -19,7 +19,12 @@ milano = gpd.read_file('/workspace/Flask/AppEs6/ds964_nil_wm-20220322T111617Z-00
 print(milano)
 
 @app.route('/', methods=['GET'])
-def search():
+def home():
+    return render_template('home.html')
+
+
+@app.route('/trova', methods=['GET'])
+def trova():
     return render_template('search.html')
     
 
@@ -43,8 +48,8 @@ def mpl():
 
 
 
-@app.route('/trova', methods = ['GET'])
-def trova():
+@app.route('/ricerca', methods = ['GET'])
+def ricerca():
     
     quartiere = request.args['quartiere']
     
@@ -55,6 +60,15 @@ def trova():
     else:
         table = risultato.to_html()
         #caricamento immagine e visualizzazione
+
+        fig, ax = plt.subplots(figsize = (12,8))
+        risultato.to_crs(epsg=3857).plot(ax=ax, alpha=0.5)
+        contextily.add_basemap(ax=ax)
+        output = io.BytesIO()
+        FigureCanvas(fig).print_png(output)
+        return Response(output.getvalue(), mimetype='image/png')
+
+
         
     
 
