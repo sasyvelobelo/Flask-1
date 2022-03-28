@@ -1,0 +1,12 @@
+<h1>Scegli la provincia:</h1>
+
+
+
+    <form action="/prov" method = "GET">
+        <select name="Province" id="Province" method="GET">
+            {% for i in prov%}
+            <option value="{{i}}" SELECTED>{{i}}</option>
+            {%endfor%}
+          </select>
+        <p><input type = "submit" value = "Submit" /></p>
+    </form>
