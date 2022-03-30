@@ -16,7 +16,7 @@ def numero():
   # numero stazioni per ogni municipio
     risultato = stazioni.groupby('MUNICIPIO')['OPERATORE'].count().reset_index()
     return render_template("elenco.html", risultato=risultato.to_html())
-    
+
 
 
 
